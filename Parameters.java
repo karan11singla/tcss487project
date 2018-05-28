@@ -1,3 +1,8 @@
+/* Enoch Chan and Karan Singla
+ * TCSS 487
+ * Written from borrowed implementation from https://github.com/romus/sha
+ */
+
 package keccak;
 
 public enum Parameters {
@@ -11,12 +16,10 @@ public enum Parameters {
     SHA3_512 (576, 64, "06"),
     SHAKE128 (1344, 32, "1F"),
     SHAKE256 (1088, 64, "1F");
-
     private final int r;
     private final int outputLength;
     private final String d;
-
-
+    
     Parameters(int r, int outputLength, String d) {
         this.r = r;
         this.outputLength = outputLength;
