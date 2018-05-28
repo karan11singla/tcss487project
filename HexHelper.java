@@ -1,3 +1,8 @@
+/* Enoch Chan and Karan Singla
+ * TCSS 487
+ * Written from borrowed implementation from https://github.com/romus/sha
+ */
+
 package keccak;
 
 public class HexHelper {
@@ -12,7 +17,6 @@ public class HexHelper {
         	output[j++] = DIGITS[(0xF0 & input[i]) >>> 4];
         	output[j++] = DIGITS[0x0F & input[i]];
         }
-
         return new String(output);
     }
 
@@ -32,7 +36,6 @@ public class HexHelper {
             j--;
             i++;
         }
-
         return input;
     }
 
