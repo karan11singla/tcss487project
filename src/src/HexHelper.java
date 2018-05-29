@@ -3,7 +3,7 @@
  * Written from borrowed implementation from https://github.com/romus/sha
  */
 
-package keccak;
+import java.math.BigInteger;
 
 public class HexHelper {
 
@@ -37,6 +37,18 @@ public class HexHelper {
             i++;
         }
         return input;
+    }
+
+    public static BigInteger sqrt(BigInteger v, BigInteger p, boolean lsb) {
+        assert (p.testBit(0) && p.testBit(1)); // p = 3 (mod 4)
+        if (v.signum() == 0) {
+            return BigInteger.ZERO;
+        }
+        BigInteger r = v.modPow(p.shiftRight(2).add(BigInteger.ONE), p);
+        if (r.testBit(0) != lsb) {
+            r = p.subtract(r); // correct the lsb
+        }
+        return (r.multiply(r).subtract(v).mod(p).signum() == 0) ? r : null;
     }
 
 }
