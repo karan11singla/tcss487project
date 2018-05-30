@@ -3,13 +3,15 @@
  * Written from borrowed implementation from https://github.com/romus/sha
  */
 
+package keccak;
+
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.PrintStream;
 import java.util.Scanner;
+import static keccak.Parameters.SHAKE256;
 
 public class RunKeccak {
-
 	public static void main(String[] args) throws FileNotFoundException {
 		String line;
 		KMACXOF256 k = new KMACXOF256();
@@ -25,7 +27,7 @@ public class RunKeccak {
 		
 		while (input.hasNextLine()) {
 			line = input.nextLine();
-			output.println(k.getHash(line, Parameters.SHAKE256));
+			output.println(k.getHash(line, SHAKE256));
 		}
 		
 		System.out.println("Done.");

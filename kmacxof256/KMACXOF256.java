@@ -3,13 +3,13 @@
  * Written from borrowed implementation from https://github.com/romus/sha
  */
 
+package keccak;
 
+import static keccak.HexHelper.convertByteToHex;
 import java.math.BigInteger;
-import java.util.Arrays;
 
 public class KMACXOF256 {
     public static final int DEFAULT_PERM_WIDTH = 1600;
-
     private static BigInteger LARGEST_LONG = new BigInteger("18446744073709551615");
     
     private BigInteger[] ROUND_CONSTANTS = new BigInteger[] {
@@ -84,7 +84,7 @@ public class KMACXOF256 {
             for (int i = 0; i < 5; i++) {
                 for (int j = 0; j < 5; j++) {
                     if ((5 * i + j) < (p.getR() / w)) {
-                        Z = Z + addZero(HexHelper.convertByteToHex(S[j][i].toByteArray()), 16).substring(0, 16);
+                        Z = Z + addZero(convertByteToHex(S[j][i].toByteArray()), 16).substring(0, 16);
                     }
                 }
             }
@@ -94,36 +94,11 @@ public class KMACXOF256 {
         return Z.substring(0, outputLength * 2);
     }
 
-
-
     private BigInteger[][] execute_keccackf(BigInteger[][] A) {
         for (int i = 0; i < n; i++) {
             A = roundB(A, ROUND_CONSTANTS[i]);
         }
         return A;
-    }
-//    public String decrypt(String itemToDecrypt, String passphrase) {
-//
-//
-//    }
-    private String addZero(String s, int length) {
-        String result = s;
-        for (int i = 0; i < length - s.length(); i++) {
-            result += "0";
-        }
-        return result;
-    }
-
-    private void initializeArr(BigInteger[] arr) {
-        for (int i = 0; i < arr.length; i++) {
-            arr[i] = new BigInteger("0", 16);
-        }
-    }
-
-    private void initialize(int b) {
-        w = b / 25;
-        int l = (int) (Math.log(w) / Math.log(2));
-        n = 12 + 2 * l;
     }
 
     private BigInteger[][] roundB(BigInteger[][] A, BigInteger ROUND_CONSTANTS) {
@@ -216,7 +191,7 @@ public class KMACXOF256 {
             if ((count * 4 % w) == 0) {
                 String subString = input.substring((count - w / 4), (w / 4) + (count - w / 4));
                 inputArr[i][j] = new BigInteger(subString, 16);
-                String revertString = HexHelper.convertByteToHex(inputArr[i][j].toByteArray());
+                String revertString = convertByteToHex(inputArr[i][j].toByteArray());
                 revertString = addZero(revertString, subString.length());
                 inputArr[i][j] = new BigInteger(revertString, 16);
                 j++;
@@ -224,7 +199,24 @@ public class KMACXOF256 {
         }
         return inputArr;
     }
+    
+    private String addZero(String s, int length) {
+        String result = s;
+        for (int i = 0; i < length - s.length(); i++) {
+            result += "0";
+        }
+        return result;
+    }
 
+    private void initializeArr(BigInteger[] arr) {
+        for (int i = 0; i < arr.length; i++) {
+            arr[i] = new BigInteger("0", 16);
+        }
+    }
 
-
+    private void initialize(int b) {
+        w = b / 25;
+        int l = (int) (Math.log(w) / Math.log(2));
+        n = 12 + 2 * l;
+    }
 }
