@@ -6,12 +6,6 @@ import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.util.List;
 
-/**
- * The private key of the El Gamal Elliptic Curve Cryptography.
- *
- * The key consists of: c, the elliptic curve used in the calculations, k is the
- * private key, a randomly-generated integer, satisfying 1 <= k < p-1.
- */
 public class PrivateKey {
 
     private EllipticEquation c;

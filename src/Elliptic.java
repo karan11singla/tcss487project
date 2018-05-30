@@ -20,7 +20,7 @@ public class Elliptic {
     private Decoder mDecoder;
 
     public Elliptic(EllipticEquation c) {
-        initCodeTable(c);
+        initializeCodeTable(c);
         this.mEncoder = new Encoder(charTable);
         this.mDecoder = new Decoder(pointTable);
     }
@@ -84,7 +84,7 @@ public class Elliptic {
         );
     }
 
-    public final void initCodeTable(EllipticEquation curve) {
+    public final void initializeCodeTable(EllipticEquation curve) {
         charTable = new HashMap<>();
         pointTable = new HashMap<>();
         Point p = curve.getBasePoint();
@@ -117,7 +117,7 @@ public class Elliptic {
         KeyPair keys = generateKeyPair(eq);
         
         boolean encryptChosen;
-        String line;
+        String line = "";
         int num;
         
         System.out.println("Encrypt (E) or Decrypt (D)?");

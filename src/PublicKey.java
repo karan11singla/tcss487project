@@ -6,11 +6,6 @@ import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.util.List;
 
-/**
- * The key consists of: c, the elliptic curve used in the calculations, pK, the
- * point obtained from k * G, where k is the corresponding private key and G is
- * the base point of c.
- */
 public class PublicKey {
 
     private EllipticEquation c;

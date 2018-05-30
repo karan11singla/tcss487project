@@ -121,22 +121,5 @@ public class EllipticEquation {
     public BigInteger calculateRhs(BigInteger x) {
         return x.multiply(x).mod(p).add(a).multiply(x).add(b).mod(p);
     }
-
-//    public static void main(String[] args) {
-//        // This computes (2, 4) + (5, 9) in y^2 = x^3 + x + 6 mod 11
-//        EllipticEquation e = new EllipticEquation(4, 20, 29);
-//        Point p = new Point(1, 5);
-//        Point q = new Point(5, 9);
-//
-//        System.out.println(p + " + " + q + " = " + e.add(p, q));
-//        for (int i = 0; i < 20; ++i) {
-//            System.out.println(p + " x " + i + " = " + e.multiply(p, i));
-//        }
-//    }
-
-    @Override
-    public String toString() {
-        return "EllipticCurve EC : " + "y^2 = x^3 + " + a + "x + " + b + "c mod " + p + "\nGenerator point G = " + basePoint + '}';
-    }
     
 }

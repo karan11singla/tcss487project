@@ -40,7 +40,6 @@ public class Matrix {
     public static Matrix make(int[] array) {
         int keyLength = 2 * Elliptic.PAD;
         Integer[] data = new Integer[(array.length - keyLength)];
-        // get the matrix
         for (int i = 0; i < data.length; i++) {
             data[i] = array[i + keyLength];
         }
@@ -57,10 +56,10 @@ public class Matrix {
         row2 = Helpers.getNotEqualTo(row1, m);
         col1 = Elliptic.getRandom().nextInt(n);
         col2 = Helpers.getNotEqualTo(col1, m);
-        op = new BigInteger(2, Elliptic.getRandom()).intValue();     //operations:
+        op = new BigInteger(2, Elliptic.getRandom()).intValue();
         if (type) {
-            x1 = Integer.min(col1, col2); // first index
-            x2 = Integer.max(col1, col2); // last index
+            x1 = Integer.min(col1, col2);
+            x2 = Integer.max(col1, col2);
             rowTrasformation(row1, x1, x2, op);
             rowTrasformation(row2, x1, x2, op);
             log("R", op, row1, row2, x1, x2);
@@ -199,16 +198,15 @@ public class Matrix {
     }
 
     public int[] toArray(String[] key) {
-        // return array of key + data;
         int k, keySize = key.length * 2;
         int[] array = new int[countColumns() * countRows() * 2 + keySize];
-        //append the key first
+
         for (k = 0; k < keySize; k = k + 2) {
             String str = key[k / 2];
             array[k] = Integer.parseInt(str.charAt(0) + "");
             array[k + 1] = Integer.parseInt(str.charAt(1) + "");
         }
-        // then add the data
+
         for (int i = 0; i < countColumns(); i++) {
             for (int j = 0; j < countRows(); j++) {
                 array[k] = Integer.parseInt(data[j][i].charAt(0) + "");

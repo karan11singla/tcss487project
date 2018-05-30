@@ -70,7 +70,6 @@ public class Point {
         if (other instanceof Point) {
             if (this.x != null) {
                 Point otherPoint = (Point)other;
-                // no need to check for null in this case
                 return this.x.equals(otherPoint.x) &&
                        this.y.equals(otherPoint.y);
             } else {

@@ -122,11 +122,4 @@ public class Helpers {
         }
         return result;
     }
-
-//    static void main(String[] args) {
-//        for (int a : toBinary(15, 5)) {
-//            System.out.print(a);
-//        }
-//        System.out.println(" :" + Character.toString((char) 32) + ":");
-//    }
 }
