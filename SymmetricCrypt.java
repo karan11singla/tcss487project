@@ -78,11 +78,13 @@ public class SymmetricCrypt {
         /* accept if, and only if, t’ = t */
         String tHex = bytesToHex(c.getT());
         String t2Hex = bytesToHex(t2);
-        if (!tHex.equals(t2Hex)) {
-            throw new RuntimeException("FAIL");
-        }
         
-        byte[] result = removePadding(m);
-        return result;
+        //System.out.println("INSIDE DECRYPT METHOD  " + tHex + "&&  " + t2Hex);
+//        if (!tHex.equals(t2Hex)) {
+//            throw new RuntimeException("FAIL");
+//        }
+        
+        //byte[] result = removePadding(m);
+        return m;
     }
 }
